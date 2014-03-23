@@ -55,3 +55,34 @@
 
 ; Interleaves collections
 (interleave (whole-numbers) ["a" "b" "c" "d" "e"])	; those parens are needed
+
+; Apply str is common enough
+(clojure.string/join \, ["Apples" "Bananas" "Grapes"])
+
+; For each collection type
+(list 1 2 3)
+(vector 1 2 3)
+(hash-set 1 2 3)
+(hash-map 1 2 3 4)
+
+(vec (range 3))
+
+;; Filtering Sequences
+(take 10 (filter odd? (whole-numbers)))
+
+(take-while (complement #{\a\e\i\o\u}) "the-quick-brown-fox")
+(drop-while (complement #{\a\e\i\o\u}) "the-quick-brown-fox")
+
+(split-at 5 (range 10))
+(split-with #(<= % 10) (range 0 20 2))
+
+(every? odd? [1 3 5]) ; every? is a predicate
+(some even? [1 2 5])
+; some is not a predicate
+(some identity [nil false 1 nil 2])
+
+(not-every? even? (whole-numbers))
+(not-any? even? (whole-numbers))
+
+;; Transforming sequences
+(map #(format "<p>%s</p>" %) ["the" "quick" "brown" "fox"])
